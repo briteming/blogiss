@@ -10,7 +10,7 @@ Target:
 5. fork-2: combine to Github's own Jekyll Github Pages to automate more & using Github's own various themes
 
 Example:
-- [My own blog](fredwe.info)
+- [My own blog](http://fredwe.info)
 
 Credits: This project is inspired from following repos:
 - https://github.com/wuhaoworld/github-issues-blog
