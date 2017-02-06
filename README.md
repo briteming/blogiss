@@ -1,4 +1,4 @@
-# blogis
+# blogiss
 Another view to automatically transform Github issues as blogs
 
 This project is inspired from following repos:
