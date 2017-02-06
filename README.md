@@ -1,5 +1,6 @@
 # blogiss
-Another view to automatically transform Github issues as blogs
+Another view to automatically transform Github issues as blogs.
+Why a view of issues blogs is important? Cause **Everyone** could post on a blogger's own zone. That's annoying :P
 
 Target:
 

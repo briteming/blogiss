@@ -7,26 +7,17 @@
   </head>
   <body>
     <div class="header">
-      <h1 class="title">
+      <h2 class="title">
         <a href="index.html"><strong>Index Page</strong></a>
       </h1>
       <p class="description">
         Free & Fast blogging with <strong>Github issues</strong>.
       </p>
     </div>
-    <div class="posts">
-      <div class="loading">
-        Loading...
-      </div>
+    <ul class="posts"></ul>
+    <div class="loading">
+      Loading...
     </div>
   </body>
-  <script>
-    window.fetch('https://raw.githubusercontent.com/FredWe/blogiss/master/config.json').then(function (response) {
-      // Convert to JSON
-      return response.json()
-    }).then(function (j) {
-      // Yay, `j` is a JavaScript object
-      console.log(j)
-    })
-  </script>
+  <script src="index.js" />
 </html>
