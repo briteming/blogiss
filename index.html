@@ -4,20 +4,60 @@
   <head>
     <title>Index Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      pre{
+        white-space: pre-wrap;
+      }
+    </style>
   </head>
   <body>
     <div class="header">
-      <h2 class="title">
-        <a href="index.html"><strong>Index Page</strong></a>
+      <h1 class="title">
+        <a href="index.html"><strong>Home Page</strong></a>
       </h1>
       <p class="description">
         Free & Fast blogging with <strong>Github issues</strong>.
       </p>
     </div>
     <ul class="posts"></ul>
-    <div class="loading">
+    <div id="loading">
       Loading...
     </div>
   </body>
-  <script src="index.js" />
+  <script>
+    var createPost = function (item) {
+      var li = document.createElement('li')
+      var pre = document.createElement('pre')
+      var title = document.createElement('h2')
+      pre.textContent = item.body
+      title.textContent = item.title
+      li.appendChild(title)
+      li.appendChild(pre)
+      return li
+    }
+    var chargeData = function (arr) {
+      var posts = document.body.querySelector('.posts')
+      arr.forEach(function (it) {
+        posts.appendChild(createPost(it))
+      })
+      var loading = document.getElementById('loading')
+      if (loading.parentNode) {
+        loading.parentNode.removeChild(loading)
+      }
+    }
+    var showPosts = function (conf) {
+      return window.fetch(`https://api.github.com/repos/${conf.user}/${conf.repo}/issues`)
+      .then(function (response) {
+        // Convert to JSON
+        return response.json()
+      })
+    }
+    var loadConfig = window.fetch('https://raw.githubusercontent.com/FredWe/blogiss/master/config.json')
+    .then(function (response) {
+      // Convert to JSON
+      return response.json()
+    })
+
+    loadConfig.then(showPosts).then(chargeData)
+  </script>
 </html>
