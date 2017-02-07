@@ -1,4 +1,5 @@
-# blogiss
+# Blogiss
+<img src="blogiss.png" width="150" />
 
 Another view to automatically transform Github issues as blogs.
 Why a view of issues blogs is important? Cause **Everyone** could post on a blogger's own zone. That's annoying :P
@@ -18,5 +19,3 @@ Credits: This project is inspired from following repos:
 - https://github.com/wuhaoworld/github-issues-blog
 - https://github.com/mateogianolio/issuance
 - https://github.com/crohr/ebarnouflant
-
-![blogiss logo](blogiss.png)
