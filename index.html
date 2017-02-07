@@ -46,7 +46,6 @@
       }
     }
     var getIssues = function (conf) {
-      conf = {USER: 'lifesinger', REPO: 'lifesinger.github.com'}
       return window.fetch(`https://api.github.com/repos/${conf['USER']}/${conf['REPO']}/issues`)
       .then(function (response) {
         return response.json()
