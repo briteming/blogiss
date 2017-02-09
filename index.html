@@ -2,7 +2,7 @@
 
 <html>
   <head>
-    <title>Blogiss Blogified GitHub Issues</title>
+    <title>Blogiss - Blogified GitHub Issues</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
       pre{
@@ -29,7 +29,7 @@
       var li = document.createElement('li')
       var pre = document.createElement('pre')
       var title = document.createElement('h2')
-      pre.textContent = item.body
+      pre.innerHTML = item.body.replace(/!\[.*?\]\s*?\(\s*?(\S+?)\)/g, (whole, url) => `<img src="${url}"/>`)
       title.textContent = item.title
       li.appendChild(title)
       li.appendChild(pre)
@@ -54,7 +54,7 @@
         showPosts(issues)
       })
     }
-    var loadConfig = window.fetch('https://raw.githubusercontent.com/FredWe/blogiss/master/config.json')
+    var loadConfig = window.fetch('config.json')
     .then(function (confRes) {
       // Convert to JSON
       return confRes.json()
