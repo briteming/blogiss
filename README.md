@@ -14,6 +14,7 @@ Target:
 
 Example:
 - [My own blog](http://fredwe.info)
+- [A view of @lifesinger 's blog](http://fredwe.info/blogiss/example)
 
 Credits: This project is inspired from following repos:
 - https://github.com/wuhaoworld/github-issues-blog

@@ -1,0 +1,65 @@
+<!doctype html>
+
+<html>
+  <head>
+    <title>Blogiss - Blogified GitHub Issues</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      pre{
+        white-space: pre-wrap;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h1 class="title">
+        <a href="index.html"><strong>Blogiss Homepage</strong></a>
+      </h1>
+      <p class="description">
+        Free & Fast blogging with <strong>Github issues</strong>.
+      </p>
+    </div>
+    <ul class="posts"></ul>
+    <div id="loading">
+      Loading...
+    </div>
+  </body>
+  <script>
+    var createPost = function (item) {
+      var li = document.createElement('li')
+      var pre = document.createElement('pre')
+      var title = document.createElement('h2')
+      pre.innerHTML = item.body.replace(/!\[.*?\]\s*?\(\s*?(\S+?)\)/g, (whole, url) => `<img src="${url}"/>`)
+      title.textContent = item.title
+      li.appendChild(title)
+      li.appendChild(pre)
+      return li
+    }
+    var showPosts = function (arr) {
+      var posts = document.body.querySelector('.posts')
+      arr.forEach(function (it) {
+        posts.appendChild(createPost(it))
+      })
+      var loading = document.getElementById('loading')
+      if (loading.parentNode) {
+        loading.parentNode.removeChild(loading)
+      }
+    }
+    var getIssues = function (conf) {
+      return window.fetch(`https://api.github.com/repos/${conf['USER']}/${conf['REPO']}/issues`)
+      .then(function (response) {
+        return response.json()
+      }).then(function (issues) {
+        issues = issues.filter(item => item.user.login === conf['USER'])
+        showPosts(issues)
+      })
+    }
+    var loadConfig = window.fetch('config.json')
+    .then(function (confRes) {
+      // Convert to JSON
+      return confRes.json()
+    })
+
+    loadConfig.then(getIssues)
+  </script>
+</html>
